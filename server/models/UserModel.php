@@ -40,5 +40,19 @@ class UserModel {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row ? new UserSkeleton($row['id'], $row['fullname'], $row['email'], $row['password'], $row['created_at']) : null;
     }
+
+    public function getUserByEmail($email) {
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':email' => $email]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($row) {
+            return new UserSkeleton($row['id'], $row['fullname'], $row['email'], $row['password'], $row['created_at']);
+        }
+    
+        return null;
+    }
+    
 }
 ?>

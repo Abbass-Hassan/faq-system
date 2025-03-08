@@ -4,7 +4,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 class JWTUtils {
-    private static $secret_key = "your_secret_key"; // Change this to a strong secret key
+    private static $secret_key = "your_secret_key";
     private static $algorithm = "HS256";
 
     // Generate JWT Token
@@ -23,7 +23,7 @@ class JWTUtils {
         try {
             return JWT::decode($token, new Key(self::$secret_key, self::$algorithm));
         } catch (Exception $e) {
-            return null; // Invalid token
+            return null;
         }
     }
 }

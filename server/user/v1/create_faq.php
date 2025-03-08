@@ -2,7 +2,7 @@
 include '../../connection/db.php';
 include '../../models/FAQModel.php';
 include '../../models/FAQSkeleton.php';
-include '../auth/verify_jwt.php'; // Verify JWT before proceeding
+include '../auth/verify_jwt.php'; 
 
 header("Content-Type: application/json");
 

@@ -1,1 +1,27 @@
-<h1>hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="login-body">
+
+    <div class="login-container">
+        <h2 class="login-title">Login</h2>
+        <input type="email" class="login-input" id="login-email" placeholder="Email">
+        <input type="password" class="login-input" id="login-password" placeholder="Password">
+        <button class="login-button" onclick="loginUser()">Login</button>
+
+        <p class="login-footer">
+            Don't have an account? <a href="register.html">Create one</a>
+        </p>
+
+        <p id="login-errorMessage" class="login-error"></p>
+    </div>
+
+    <script src="scripts/auth.js"></script>
+</body>
+</html>

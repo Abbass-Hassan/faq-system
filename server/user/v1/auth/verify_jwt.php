@@ -21,5 +21,5 @@ if (!$decoded) {
     exit;
 }
 
-$userId = $decoded->user_id; // Use this in protected routes
+$userId = $decoded->user_id; 
 ?>

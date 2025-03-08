@@ -1,8 +1,8 @@
 <?php
-include '../../../connection/db.php';
-include '../../../models/UserModel.php';
-include '../../../models/UserSkeleton.php';
-include 'jwt_utils.php';
+require_once '../../../connection/db.php';
+require_once '../../../models/UserModel.php';
+require_once '../../../models/UserSkeleton.php';
+require_once 'jwt_utils.php';
 
 header("Content-Type: application/json");
 
@@ -21,17 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
         $userModel = new UserModel($conn);
 
-        // Check if email already exists
         if ($userModel->getUserByEmail($email)) {
             echo json_encode(["error" => "Email already exists"]);
             exit;
         }
 
-        // Create new user
         $user = new UserSkeleton(null, $fullname, $email, $password, date("Y-m-d H:i:s"));
         $userId = $userModel->createUser($user);
 
-        // Generate JWT token for automatic login
         $token = JWTUtils::generateToken($userId, $email);
 
         echo json_encode([

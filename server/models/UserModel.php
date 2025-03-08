@@ -1,6 +1,6 @@
 <?php
-include __DIR__ . '/../connection/db.php';
-include __DIR__ . '/UserSkeleton.php';
+require_once __DIR__ . '/../connection/db.php';
+require_once __DIR__ . '/UserSkeleton.php';
 
 class UserModel {
     private $conn;
@@ -9,36 +9,20 @@ class UserModel {
         $this->conn = $db;
     }
 
-    // Create a new user
     public function createUser(UserSkeleton $user) {
-        $sql = "INSERT INTO users (fullname, email, password) VALUES (:fullname, :email, :password)";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            ':fullname' => $user->getFullname(),
-            ':email' => $user->getEmail(),
-            ':password' => $user->getPassword()
-        ]);
-        return $this->conn->lastInsertId();
-    }
-
-    // Get all users
-    public function getAllUsers() {
-        $sql = "SELECT * FROM users";
-        $stmt = $this->conn->query($sql);
-        $users = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $users[] = new UserSkeleton($row['id'], $row['fullname'], $row['email'], $row['password'], $row['created_at']);
+        try {
+            $sql = "INSERT INTO users (fullname, email, password, created_at) VALUES (:fullname, :email, :password, NOW())";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':fullname' => $user->getFullname(),
+                ':email' => $user->getEmail(),
+                ':password' => $user->getPassword()
+            ]);
+            return $this->conn->lastInsertId();
+        } catch (PDOException $e) {
+            error_log("Database Insert Error: " . $e->getMessage());
+            return null;
         }
-        return $users;
-    }
-
-    // Get user by ID
-    public function getUserById($id) {
-        $sql = "SELECT * FROM users WHERE id = :id";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([':id' => $id]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row ? new UserSkeleton($row['id'], $row['fullname'], $row['email'], $row['password'], $row['created_at']) : null;
     }
 
     public function getUserByEmail($email) {
@@ -46,13 +30,11 @@ class UserModel {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':email' => $email]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
         if ($row) {
             return new UserSkeleton($row['id'], $row['fullname'], $row['email'], $row['password'], $row['created_at']);
         }
-    
         return null;
     }
-    
 }
 ?>

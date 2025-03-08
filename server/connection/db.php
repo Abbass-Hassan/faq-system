@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "faq_system";
 $username = "root"; // Change if using another user
-$password = ""; // Keep empty if no password
+$password = "Abbas297$"; // Keep empty if no password
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

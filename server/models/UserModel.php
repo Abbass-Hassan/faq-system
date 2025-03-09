@@ -9,6 +9,7 @@ class UserModel {
         $this->conn = $db;
     }
 
+    // Creates a new user and returns the inserted user ID.
     public function createUser(UserSkeleton $user) {
         try {
             $sql = "INSERT INTO users (fullname, email, password, created_at) VALUES (:fullname, :email, :password, NOW())";
@@ -25,6 +26,7 @@ class UserModel {
         }
     }
 
+    // Retrieves a user by email; returns a UserSkeleton instance or null.
     public function getUserByEmail($email) {
         $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->conn->prepare($sql);

@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/../../connection/db.php'; // Correct path to db.php
+include __DIR__ . '/../../connection/db.php';
 
 try {
     $sql = "CREATE TABLE IF NOT EXISTS faqs (

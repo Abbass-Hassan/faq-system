@@ -29,7 +29,7 @@ class FAQModel {
     public function getAllFAQs() {
         $sql = "SELECT id, question, answer, created_at FROM faqs";
         $stmt = $this->conn->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Return associative array
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

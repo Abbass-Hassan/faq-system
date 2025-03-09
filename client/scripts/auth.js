@@ -1,5 +1,6 @@
 const API_BASE_URL = "http://localhost/faq-system/server/user/v1/auth";
 
+// Registers a new user, stores the received token, and redirects to home.
 async function registerUser() {
     const fullname = document.getElementById("register-fullname").value;
     const email = document.getElementById("register-email").value;
@@ -31,6 +32,7 @@ async function registerUser() {
     }
 }
 
+// Logs in an existing user, stores the token, and redirects to home.
 async function loginUser() {
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
@@ -60,11 +62,7 @@ async function loginUser() {
     }
 }
 
-function logoutUser() {
-    localStorage.removeItem("token");
-    window.location.href = "index.html";
-}
-
+// Checks if a user is authenticated; if not, redirects to the login page.
 function checkAuth() {
     const token = localStorage.getItem("token");
     if (!token) {

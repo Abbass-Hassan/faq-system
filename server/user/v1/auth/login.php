@@ -14,13 +14,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     $email = $data['email'];
-    $password = hash("sha256", $data['password']); // SHA-256 Hashing
+    // Hash the password using SHA-256.
+    $password = hash("sha256", $data['password']);
 
     try {
+        // Retrieve user by email and verify password.
         $userModel = new UserModel($conn);
         $user = $userModel->getUserByEmail($email);
 
         if ($user && $user->getPassword() === $password) {
+            // Generate JWT token upon successful authentication.
             $token = JWTUtils::generateToken($user->getId(), $user->getEmail());
             echo json_encode(["message" => "Login successful", "token" => $token]);
         } else {

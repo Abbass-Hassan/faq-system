@@ -1,43 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQs</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAQs | Prompt Pattern Catalog</title>
+  <!-- Google Fonts (Poppins) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="faq-body" onload="loadFAQs()">
+  
+  <!-- 🔹 Top Navigation Bar -->
+  <nav class="top-nav">
+    <div class="brand">Prompt Pattern Catalog</div>
+    <button class="logout-button" onclick="logoutUser()">Logout</button>
+  </nav>
+  
+  <!-- 🔹 Main FAQ Section -->
+  <main class="faq-main">
+    <!-- Page Heading -->
+    <section class="faq-hero">
+      <h1 class="faq-title">Frequently Asked Questions</h1>
+      <p class="faq-subtitle">
+        A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT
+      </p>
+    </section>
 
+    <!-- FAQ Container (Search & List) -->
     <div class="faq-container">
-        <!-- 🔹 Top Section (Search + Add Button) -->
-        <div class="faq-header">
-            <input type="text" class="faq-search" id="faq-search" placeholder="Search FAQs..." oninput="filterFAQs()">
-            <button class="faq-add-button" onclick="openFaqModal()">+ Add FAQ</button>
-        </div>
+      <!-- Header (Search + Add Button) -->
+      <div class="faq-header">
+        <input
+          type="text"
+          class="faq-search"
+          id="faq-search"
+          placeholder="Search FAQs..."
+          oninput="filterFAQs()"
+        />
+        <button class="faq-add-button" onclick="openFaqModal()">+ Add FAQ</button>
+      </div>
 
-        <!-- 🔹 FAQ List -->
-        <div id="faq-list" class="faq-list">
-            <p>Loading FAQs...</p>
-        </div>
+      <!-- FAQ List -->
+      <div id="faq-list" class="faq-list">
+        <p>Loading FAQs...</p>
+      </div>
     </div>
+  </main>
 
-    <!-- 🔹 Add FAQ Modal -->
-    <!-- 🔹 Add FAQ Modal -->
-    <div id="faq-modal" class="faq-modal">
-        <div class="faq-modal-content">
-            <h2>Add New FAQ</h2>
-            <input type="text" id="faq-question" class="faq-input" placeholder="Enter Question">
-            <textarea id="faq-answer" class="faq-textarea" placeholder="Enter Answer"></textarea>
-            <div class="faq-modal-buttons">
-                <button class="faq-button faq-save" onclick="addFAQ()">Save</button>
-                <button class="faq-button faq-cancel" onclick="closeFaqModal()">Cancel</button>
-            </div>
-            <p id="faq-errorMessage" class="faq-error"></p>
-        </div>
+  <!-- 🔹 Add FAQ Modal -->
+  <div id="faq-modal" class="faq-modal">
+    <div class="faq-modal-content">
+      <h2>Add New FAQ</h2>
+      <input
+        type="text"
+        id="faq-question"
+        class="faq-input"
+        placeholder="Enter Question"
+      />
+      <textarea
+        id="faq-answer"
+        class="faq-textarea"
+        placeholder="Enter Answer"
+      ></textarea>
+      <div class="faq-modal-buttons">
+        <button class="faq-button faq-save" onclick="addFAQ()">Save</button>
+        <button class="faq-button faq-cancel" onclick="closeFaqModal()">Cancel</button>
+      </div>
+      <p id="faq-errorMessage" class="faq-error"></p>
     </div>
+  </div>
 
-
-    <script src="scripts/home.js"></script>
+  <script src="scripts/home.js"></script>
 </body>
 </html>

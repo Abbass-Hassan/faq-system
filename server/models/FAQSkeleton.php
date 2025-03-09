@@ -1,6 +1,4 @@
 <?php
-
-// Prevent duplicate class declarations
 if (!class_exists('FAQSkeleton')) {
     class FAQSkeleton {
         private $id;
@@ -15,7 +13,6 @@ if (!class_exists('FAQSkeleton')) {
             $this->created_at = $created_at;
         }
 
-        // Getters
         public function getId() {
             return $this->id;
         }
@@ -32,7 +29,6 @@ if (!class_exists('FAQSkeleton')) {
             return $this->created_at;
         }
 
-        // Setters
         public function setQuestion($question) {
             $this->question = $question;
         }

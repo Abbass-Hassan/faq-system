@@ -3,11 +3,12 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
+// Utility class for JWT operations.
 class JWTUtils {
     private static $secret_key = "your_secret_key";
     private static $algorithm = "HS256";
 
-    // Generate JWT Token
+    // Generates a JWT token with user ID, email, and expiration.
     public static function generateToken($userId, $email) {
         $payload = [
             "user_id" => $userId,
@@ -18,7 +19,7 @@ class JWTUtils {
         return JWT::encode($payload, self::$secret_key, self::$algorithm);
     }
 
-    // Validate and Decode JWT
+    // Validates a JWT token and returns the decoded payload, or null if invalid.
     public static function validateToken($token) {
         try {
             return JWT::decode($token, new Key(self::$secret_key, self::$algorithm));

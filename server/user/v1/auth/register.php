@@ -8,7 +8,6 @@ header("Content-Type: application/json");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $data = json_decode(file_get_contents("php://input"), true);
-
     if (!isset($data['fullname'], $data['email'], $data['password'])) {
         echo json_encode(["error" => "All fields are required"]);
         exit;
@@ -16,19 +15,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $fullname = $data['fullname'];
     $email = $data['email'];
-    $password = hash("sha256", $data['password']); // SHA-256 Hashing
+    $password = hash("sha256", $data['password']); // Hash the password using SHA-256.
 
     try {
+        // Check for existing email and create a new user.
         $userModel = new UserModel($conn);
-
         if ($userModel->getUserByEmail($email)) {
             echo json_encode(["error" => "Email already exists"]);
             exit;
         }
-
         $user = new UserSkeleton(null, $fullname, $email, $password, date("Y-m-d H:i:s"));
         $userId = $userModel->createUser($user);
 
+        // Generate a JWT token for the new user.
         $token = JWTUtils::generateToken($userId, $email);
 
         echo json_encode([

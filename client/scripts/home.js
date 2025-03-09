@@ -1,6 +1,6 @@
 const API_BASE_URL = "http://localhost/faq-system/server/user/v1";
 
-// Load FAQs from API
+// Load FAQs from the API and update the UI.
 async function loadFAQs() {
     try {
         const response = await axios.get(`${API_BASE_URL}/get_faqs.php`);
@@ -41,12 +41,12 @@ async function loadFAQs() {
     }
 }
 
-// Open Add FAQ Modal
+// Open the modal to add a new FAQ.
 function openFaqModal() {
     document.getElementById("faq-modal").style.display = "flex";
 }
 
-// Close Add FAQ Modal
+// Close the modal for adding a new FAQ and reset its content.
 function closeFaqModal() {
     document.getElementById("faq-modal").style.display = "none";
     document.getElementById("faq-question").value = "";
@@ -54,8 +54,7 @@ function closeFaqModal() {
     document.getElementById("faq-errorMessage").innerText = "";
 }
 
-
-// Add New FAQ
+// Add a new FAQ via API call after validating input and token.
 async function addFAQ() {
     const question = document.getElementById("faq-question").value.trim();
     const answer = document.getElementById("faq-answer").value.trim();
@@ -69,7 +68,7 @@ async function addFAQ() {
     }
 
     try {
-        const token = localStorage.getItem("token"); // Get JWT token
+        const token = localStorage.getItem("token");
         if (!token) {
             errorMessage.innerText = "Unauthorized. Please log in.";
             return;
@@ -84,15 +83,14 @@ async function addFAQ() {
             errorMessage.innerText = response.data.error;
         } else {
             closeFaqModal();
-            loadFAQs(); // Reload FAQs dynamically
+            loadFAQs();
         }
     } catch (error) {
         errorMessage.innerText = "Failed to add FAQ. Please try again.";
     }
 }
 
-
-// Filter FAQs based on search query
+// Filter displayed FAQs based on the search query.
 function filterFAQs() {
     const searchQuery = document.getElementById("faq-search").value.toLowerCase();
     const faqItems = document.querySelectorAll(".faq-item");
@@ -103,3 +101,8 @@ function filterFAQs() {
     });
 }
 
+// Log out the user by clearing the token and redirecting to the homepage.
+function logoutUser() {
+    localStorage.removeItem("token");
+    window.location.href = "index.html";
+}

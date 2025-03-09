@@ -5,8 +5,6 @@
     font-family: "Poppins", sans-serif;
 }
 
-
-
 /* 🔹 Login Page Styles */
 .login-body {
     display: flex;
@@ -143,8 +141,6 @@
     margin-top: 10px;
 }
 
-
-
 a {
     color: #007bff;
     text-decoration: none;
@@ -165,107 +161,156 @@ a {
 
 
 
-
-
 /* 🔹 FAQ Page */
+
 .faq-body {
+    background: #f2f4f7;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .top-nav {
+    display: flex;
     align-items: center;
-    height: 100vh;
-    background: #f8f9fa;
-}
-
-/* 🔹 Main Container */
-.faq-container {
-    width: 100%;
-    max-width: 600px;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* 🔹 Header Section */
-.faq-header {
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.faq-search {
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
-}
-
-.faq-add-button {
-    padding: 10px 15px;
-    background: #007bff;
-    color: white;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .brand {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .logout-button {
+    background: #dc3545;
+    color: #fff;
+    padding: 10px 16px;
     border: none;
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
     transition: background 0.3s;
-}
+  }
+  .logout-button:hover {
+    background: #c82333;
+  }
+  
+  .faq-main {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+  }
+  
+  .faq-hero {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .faq-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .faq-subtitle {
+    font-size: 16px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  
+  .faq-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
 
-.faq-add-button:hover {
+  .faq-search {
+    width: 65%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border 0.3s;
+  }
+
+  .faq-search:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  .faq-add-button {
+    padding: 10px 15px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .faq-add-button:hover {
     background: #0056b3;
-}
-
-/* 🔹 FAQ List */
-.faq-list {
+  }
+  
+  .faq-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
-}
+  }
 
-/* 🔹 Individual FAQ Item */
-.faq-item {
+  .faq-list p {
+    color: #666;
+    font-size: 15px;
+  }
+  
+  .faq-item {
     background: #fff;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
+    transition: background 0.3s;
+  }
 
-.faq-item:hover {
-    background: #f0f0f0;
-}
-
-/* 🔹 FAQ Question */
-.faq-question {
+  .faq-item:hover {
+    background: #f9f9f9;
+  }
+  
+  .faq-question {
     font-size: 16px;
     font-weight: 600;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-/* 🔹 FAQ Answer (Hidden by Default) */
-.faq-answer {
+  }
+  
+  .faq-answer {
     font-size: 14px;
     color: #555;
     margin-top: 10px;
     display: none;
-}
+    line-height: 1.4;
+  }
 
-/* 🔹 Expanded FAQ */
-.faq-item.active .faq-answer {
+  .faq-item.active .faq-answer {
     display: block;
-}
-
-
-
-
-
-/* 🔹 Modal Styling */
-.faq-modal {
+  }
+  
+  .faq-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -275,68 +320,69 @@ a {
     background: rgba(0, 0, 0, 0.3);
     justify-content: center;
     align-items: center;
-}
+    z-index: 999;
+  }
 
-.faq-modal-content {
-    background: white;
+  .faq-modal-content {
+    background: #fff;
     padding: 20px;
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-}
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
 
-.faq-input, .faq-textarea {
+  .faq-input,
+  .faq-textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 14px;
-}
+  }
 
-.faq-textarea {
+  .faq-textarea {
     height: 80px;
     resize: none;
-}
+  }
 
-.faq-modal-buttons {
+  .faq-modal-buttons {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
-}
+  }
 
-.faq-button {
+  .faq-button {
     padding: 10px 15px;
     border: none;
     border-radius: 8px;
     font-size: 14px;
     cursor: pointer;
     transition: background 0.3s;
-}
+  }
 
-.faq-save {
+  .faq-save {
     background: #28a745;
-    color: white;
-}
+    color: #fff;
+  }
 
-.faq-save:hover {
+  .faq-save:hover {
     background: #218838;
-}
+  }
 
-.faq-cancel {
+  .faq-cancel {
     background: #dc3545;
-    color: white;
-}
+    color: #fff;
+  }
 
-.faq-cancel:hover {
+  .faq-cancel:hover {
     background: #c82333;
-}
+  }
 
-.faq-error {
+  .faq-error {
     color: red;
     font-size: 14px;
     margin-top: 10px;
-}
-
+  }

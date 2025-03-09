@@ -1,12 +1,12 @@
 <?php
-require_once __DIR__ . '/auth/verify_jwt.php'; // This is in /server/user/v1/auth/
-require_once __DIR__ . '/../../connection/db.php';  // Up two levels, then into connection/
-require_once __DIR__ . '/../../models/FAQModel.php';  // Up two levels, then into models/
+require_once __DIR__ . '/auth/verify_jwt.php';
+require_once __DIR__ . '/../../connection/db.php';
+require_once __DIR__ . '/../../models/FAQModel.php';
 require_once __DIR__ . '/../../models/FAQSkeleton.php';
 
 header("Content-Type: application/json");
 
-// Use the verifyJWT function to get user data
+// Authenticate user with JWT.
 $userData = verifyJWT();
 if (!$userData) {
     echo json_encode(["error" => "Unauthorized request: Invalid token."]);
@@ -25,10 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $answer = trim($data['answer']);
 
     try {
+        // Create a new FAQ entry.
         $faqModel = new FAQModel($conn);
         $faq = new FAQSkeleton(null, $question, $answer, date("Y-m-d H:i:s"));
         $faqId = $faqModel->createFAQ($faq);
 
+        // Return success response.
         echo json_encode([
             "message" => "FAQ created successfully",
             "faq_id" => $faqId,

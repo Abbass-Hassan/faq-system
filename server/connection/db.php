@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+
 $host = "localhost";
 $dbname = "faq_system";
 $username = "root"; 
